@@ -165,7 +165,7 @@ func NewClient(config *Config, options ...ConsulOption) (*Client, error) {
 
 	rpcRouter := flat.router
 	if rpcRouter == nil {
-		rpcRouter = router.NewRouter(logger, config.Datacenter, fmt.Sprintf("%s.%s", config.NodeName, config.Datacenter))
+		rpcRouter = router.NewRouter(logger, config.Datacenter, fmt.Sprintf("%s.%s", config.NodeName, config.Datacenter), nil)
 	}
 
 	if err := rpcRouter.AddArea(types.AreaLAN, c.serf, c.connPool); err != nil {

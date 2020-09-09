@@ -389,7 +389,7 @@ func NewServer(config *Config, options ...ConsulOption) (*Server, error) {
 	loggers := newLoggerStore(serverLogger)
 
 	if rpcRouter == nil {
-		rpcRouter = router.NewRouter(serverLogger, config.Datacenter, fmt.Sprintf("%s.%s", config.NodeName, config.Datacenter))
+		rpcRouter = router.NewRouter(serverLogger, config.Datacenter, fmt.Sprintf("%s.%s", config.NodeName, config.Datacenter), nil)
 	}
 
 	// Create server.
