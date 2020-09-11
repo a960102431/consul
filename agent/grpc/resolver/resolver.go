@@ -41,6 +41,8 @@ type ServerResolverBuilder struct {
 	// parallel testing because gRPC registers resolvers globally.
 	scheme string
 	// servers is an index of Servers by Server.ID
+	// TODO: this assumes that server.ID is unique across all datacenter. Is that
+	// a safe assumption?
 	servers map[string]*metadata.Server
 	// resolvers is an index of connections to the serverResolver which manages
 	// addresses of servers for that connection.

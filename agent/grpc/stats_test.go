@@ -66,24 +66,6 @@ func TestHandler_EmitsStats(t *testing.T) {
 	require.Equal(t, expectedGauge, sink.gaugeCalls)
 }
 
-type simple struct {
-	name string
-}
-
-func (s *simple) Flow(_ *testservice.Req, flow testservice.Simple_FlowServer) error {
-	if err := flow.Send(&testservice.Resp{ServerName: "one"}); err != nil {
-		return err
-	}
-	if err := flow.Send(&testservice.Resp{ServerName: "two"}); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (s *simple) Something(_ context.Context, _ *testservice.Req) (*testservice.Resp, error) {
-	return &testservice.Resp{ServerName: "the-fake-service-name"}, nil
-}
-
 func patchGlobalMetrics(t *testing.T) *fakeMetricsSink {
 	t.Helper()
 

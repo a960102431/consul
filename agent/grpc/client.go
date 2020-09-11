@@ -54,7 +54,8 @@ func (c *ClientConnPool) ClientConn(datacenter string) (*grpc.ClientConn, error)
 		return conn, nil
 	}
 
-	conn, err := grpc.Dial(fmt.Sprintf("%s:///server.%s", c.servers.Scheme(), datacenter),
+	conn, err := grpc.Dial(
+		fmt.Sprintf("%s:///server.%s", c.servers.Scheme(), datacenter),
 		// use WithInsecure mode here because we handle the TLS wrapping in the
 		// custom dialer based on logic around whether the server has TLS enabled.
 		grpc.WithInsecure(),
